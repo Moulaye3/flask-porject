@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Eater - Chapter Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #0d0d0d, #1a1a1a);
+            color: white;
+            font-family: 'Arial Black', sans-serif;
+            text-align: center;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 1.2rem;
+            font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #ff6b6b !important;
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .chapter-box {
+            background: linear-gradient(to bottom, #222, #000);
+            border: 3px solid #ffffff;
+            border-radius: 15px;
+            padding: 15px;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chapter-box:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+        }
+
+        .chapter-box a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .chapter-box img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            border: 3px solid #ffffff;
+            filter: grayscale(80%) contrast(150%) brightness(95%) drop-shadow(0 0 10px #ffffff);
+        }
+
+        .chapter-box:hover img {
+            filter: grayscale(50%) contrast(170%) brightness(110%) drop-shadow(0 0 20px #ffffff);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">Death City</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">DWMA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Shinigami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>SOUL RESONANCE ARCHIVES</h1>
+
+    <div class="container">
+        <div class="grid">
+            {% for i in range(1, 24) %}
+            <div class="chapter-box">
+                <a href="{{ url_for('image_page', image_name=i|string + '.png') }}">
+                    <img src="{{ url_for('static', filename='images/' + i|string + '.png') }}" 
+                         alt="Soul Chapter {{ i }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
