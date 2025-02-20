@@ -12,13 +12,13 @@
             font-family: 'Arial Black', sans-serif;
             text-align: center;
         }
-        
+
         .navbar {
             background: rgba(255, 255, 255, 0.1) !important;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
         }
-        
+
         .navbar-nav {
             margin-left: auto;
         }
@@ -95,6 +95,7 @@
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -105,6 +106,13 @@
                     <li class="nav-item"><a class="nav-link" href="/">Death City</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">DWMA</a></li>
                     <li class="nav-item"><a class="nav-link" href="/contact">Shinigami</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
